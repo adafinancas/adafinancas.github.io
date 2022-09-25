@@ -52,8 +52,10 @@
     <script>
         $.getJSON('https://raw.githubusercontent.com/adafinancas/b3/main/market.json', function(data) {
             $.each(data, function(i, f) {
-                var tblRow = "<tr>" + "<td>" + f.name + "</td>" + "<td>" + f.code + "</td>" + "</tr>"
-                $(tblRow).appendTo("#market tbody");
+                var url = "https://adafinancas.github.io/b3/" + f.code.toLowerCase() + ".html";
+                var href = "<a href='" + url + "'>" + f.code + "</a>";
+                var row = "<tr>" + "<td>" + f.name + "</td>" + "<td>" + href + "</td>" + "</tr>";
+                $(row).appendTo("#market tbody");
             });
         });
     </script>
