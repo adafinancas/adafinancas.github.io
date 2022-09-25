@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>ADA Finanças</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link rel="stylesheet" href="assets/stylesheets.css">
+        <link href="assets/css" rel="stylesheet">
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+    </head>
+
+    <body>
+        <div class="container pt3 mt2 text--gray align--center">
+            <h2 class="mb">Empresas Listadas na Bolsa do Brasil</h2>
+        </div>
+
+        <div class="container pt3 mt2 text--darkest-gray">
+            <div class="wrapper">
+                <div class="profile">
+                    <table id= "market">
+                        <thead>
+                            <th>Nome</th>
+                            <th>Sigla</th>
+                        </thead>
+                        <tbody>
+                       </tbody>
+                   </table>
+                </div>
+            </div>
+            <br/>
+        </div>
+
+        <div class="bg--dark-gray align--center pt3 pb3">
+            <div class="container pt2 pb2">
+                <img class="cta-image mb2" src="assets/ada.png" alt="Text the app">
+                <div class="mb1">
+                    <span>
+                        <a href="https://play.google.com/store/apps/details?id=io.github.ada.financas" class="link" target="_blank">
+                            <img class="download" src="assets/googleplay.png" alt="Download na Google Play">
+                        </a>
+                    </span>
+                    <span>
+                        <img class="download" src="assets/ios.png" alt="Download na the App Store">
+                    </span>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        $.getJSON('https://raw.githubusercontent.com/adafinancas/b3/main/market.json', function(data) {
+            $.each(data, function(i, f) {
+                var tblRow = "<tr>" + "<td>" + f.name + "</td>" + "<td>" + f.code + "</td>" + "</tr>"
+                $(tblRow).appendTo("#market tbody");
+            });
+        });
+    </script>
+</html>
