@@ -8,30 +8,40 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <link rel="stylesheet" href="assets/stylesheets.css">
+        <link rel="stylesheet" href="assets/table.css">
         <link href="assets/css" rel="stylesheet">
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
     </head>
 
     <body>
         <div class="container pt3 mt2 text--gray align--center">
-            <h2 class="mb">Empresas Listadas na Bolsa do Brasil</h2>
+            <h2 class="mb">Pricipais Empresas Listadas na B3</h2>
         </div>
 
-        <div class="container pt3 mt2 text--darkest-gray">
-            <div class="wrapper">
-                <div class="profile">
-                    <table id= "market">
-                        <thead>
-                            <th>Nome</th>
-                            <th>Sigla</th>
-                        </thead>
-                        <tbody>
-                       </tbody>
-                   </table>
-                </div>
+        <section>
+            <div class="tbl-header">
+              <table cellpadding="0" cellspacing="0" border="0">
+                <thead>
+                  <tr>
+                    <th>Nome</th>
+                    <th>Sigla</th>
+                    <th>Marketcap</th>
+                    <th>Ganhos por Ação</th>
+                    <th>Relação Preço/Lucro</th>
+                    <th>Variação Anual</th>
+                    <th>Volume</th>
+                    <th>Volume Médio</th>
+                  </tr>
+                </thead>
+              </table>
             </div>
-            <br/>
-        </div>
+            <div class="tbl-content">
+              <table id= "market" cellpadding="0" cellspacing="0" border="0">
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+        </section>
 
         <div class="bg--dark-gray align--center pt3 pb3">
             <div class="container pt2 pb2">
@@ -52,11 +62,21 @@
     <script>
         $.getJSON('https://raw.githubusercontent.com/adafinancas/b3/main/market.json', function(data) {
             $.each(data, function(i, f) {
-                var url = "https://adafinancas.github.io/b3/" + f.code.toLowerCase() + ".html";
-                var href = "<a href='" + url + "'>" + f.code + "</a>";
-                var row = "<tr>" + "<td>" + f.name + "</td>" + "<td>" + href + "</td>" + "</tr>";
+                // var url = "https://adafinancas.github.io/b3/" + f.code.toLowerCase() + ".html";
+                // var href = "<a href='" + url + "'>" + f.code + "</a>";
+      
+                var code = "<td>" + f.code + "</td>";
+                var name = "<td>" + f.name + "</td>";
+                var marketcap = "<td>" + f.marketcap + "</td>";
+                var pe = "<td>" + f.pe + "</td>";
+                var eps = "<td>" + f.eps + "</td>";
+                var year = "<td>" + f.year + "</td>";
+                var volume = "<td>" + f.volume + "</td>";
+                var volumeavg = "<td>" + f.volumeavg + "</td>";
+      
+                var row = "<tr>" + name + code + marketcap + pe + eps + year + volume + volumeavg +  "</tr>";
                 $(row).appendTo("#market tbody");
             });
         });
-    </script>
+      </script>
 </html>
